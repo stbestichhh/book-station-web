@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
-import { Book, books } from '../temd_data.ts';
+import { Book, books as booksArray } from '../temd_data.ts';
 import BookGallery from '../components/BookGallery.tsx';
 import BookDetails from '../components/BookDetails.tsx';
 import ReadingStats from '../components/ReadingStats.tsx';
 import { getFullBookId } from '../utils';
+import AddBookForm from '../components/AddBookForm.tsx';
 
 const Home = () => {
+  const [books, setBooks] = useState<Book[]>(booksArray);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+  const [isAddingBook, setIsAddingBook] = useState<boolean>(false);
   const galleryRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -25,9 +28,15 @@ const Home = () => {
 
   const handleBackToStats = () => {
     setSelectedBook(null);
+    setIsAddingBook(false);
     if (galleryRef.current) {
       galleryRef.current.scrollTo({ left: 0, behavior: 'smooth' });
     }
+  };
+
+  const handleAddBook = (newBook: Book) => {
+    setBooks([newBook, ...booksArray]);
+    setIsAddingBook(false);
   };
 
   return (
@@ -39,10 +48,14 @@ const Home = () => {
         selectedBook={selectedBook}
         onSelect={setSelectedBook}
         galleryRef={galleryRef}
+        setIsAddingBook={setIsAddingBook}
+        isAddingBook={isAddingBook}
       />
 
       <div className={`mt-4 p-3 border border-secondary`}>
-        {selectedBook ? (
+        {isAddingBook ? (
+          <AddBookForm handleAddBook={handleAddBook} />
+        ) : selectedBook ? (
           <BookDetails book={selectedBook} onBack={handleBackToStats} />
         ) : (
           <ReadingStats />

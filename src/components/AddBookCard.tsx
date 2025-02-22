@@ -1,21 +1,23 @@
-import { books } from '../temd_data.ts';
 import GalleryCard from './GalleryCard.tsx';
+import { Book } from '../temd_data.ts';
 
-const AddBookCard = () => {
-  const addBook = () => {
-    books.unshift({
-      id: books[books.length - 1].id + 1,
-      title: 'Book Three',
-      author: 'Author C',
-      pages: 400,
-      description: 'Yet another great book.',
-      image: 'https://placehold.co/600x400/000000/FFFFFF/png',
-      pagesRead: 0,
-      minutesSpent: 0,
-      status: 'Reading',
-    });
-  };
+interface AddingBookCardProps {
+  onSelect: () => void;
+  selectedBook: Book | null;
+  isAddingBook: boolean;
+}
 
-  return <GalleryCard title={`Add new book`} onSelect={addBook} />;
+const AddBookCard = ({
+  onSelect,
+  selectedBook,
+  isAddingBook,
+}: AddingBookCardProps) => {
+  return (
+    <GalleryCard
+      title={`Add new book`}
+      onSelect={onSelect}
+      isSelected={selectedBook === null && isAddingBook}
+    />
+  );
 };
 export default AddBookCard;
