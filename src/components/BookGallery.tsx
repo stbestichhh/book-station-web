@@ -11,6 +11,7 @@ interface BookGalleryProps {
   galleryRef: React.RefObject<HTMLDivElement | null>;
   setIsAddingBook: (state: boolean) => void;
   isAddingBook: boolean;
+  scrollGallery: (direction: 'left' | 'right') => void;
 }
 
 const BookGallery = ({
@@ -20,6 +21,7 @@ const BookGallery = ({
   galleryRef,
   setIsAddingBook,
   isAddingBook,
+  scrollGallery,
 }: BookGalleryProps) => {
   const onBookAddSelect = () => {
     setIsAddingBook(true);
@@ -32,32 +34,55 @@ const BookGallery = ({
   };
 
   return (
-    <div
-      ref={galleryRef}
-      className={`d-flex overflow-auto p-3 border border-secondary`}
-      style={{ whiteSpace: 'nowrap', maxWidth: '100%' }}
-    >
-      <AddBookCard
-        onSelect={onBookAddSelect}
-        isAddingBook={isAddingBook}
-        selectedBook={selectedBook}
-      />
-      <ReadingStatsCard
-        onSelect={onSelect}
-        selectedBook={selectedBook}
-        setIsAddingBook={setIsAddingBook}
-        isAddingBook={isAddingBook}
-      />
-      {books.map((book) => (
-        <BookCard
-          key={book.id}
-          bookId={book.id}
-          title={book.title}
-          image={book.image}
-          onSelect={() => onBookCardSelect(book)}
-          isSelected={selectedBook?.id === book.id}
+    <div className="position-relative w-100">
+      <div className="d-flex gap-2 justify-content-end w-100">
+        <button
+          className="btn btn-secondary rounded-circle"
+          style={{ width: '50px', height: '50px' }}
+          onClick={() => scrollGallery('left')}
+        >
+          ←
+        </button>
+        <button
+          className="btn btn-secondary rounded-circle"
+          style={{ width: '50px', height: '50px' }}
+          onClick={() => scrollGallery('right')}
+        >
+          →
+        </button>
+      </div>
+      <div
+        ref={galleryRef}
+        className={`d-flex p-3 overflow-hidden`}
+        style={{
+          whiteSpace: 'nowrap',
+          position: 'static',
+          top: 0,
+          width: '100vw',
+        }}
+      >
+        <AddBookCard
+          onSelect={onBookAddSelect}
+          isAddingBook={isAddingBook}
+          selectedBook={selectedBook}
         />
-      ))}
+        <ReadingStatsCard
+          onSelect={onSelect}
+          selectedBook={selectedBook}
+          setIsAddingBook={setIsAddingBook}
+          isAddingBook={isAddingBook}
+        />
+        {books.map((book) => (
+          <BookCard
+            key={book.id}
+            bookId={book.id}
+            title={book.title}
+            image={book.image}
+            onSelect={() => onBookCardSelect(book)}
+            isSelected={selectedBook?.id === book.id}
+          />
+        ))}
+      </div>
     </div>
   );
 };

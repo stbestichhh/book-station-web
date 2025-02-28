@@ -24,7 +24,7 @@ const Home = () => {
         targetBook.scrollIntoView({ behavior: 'smooth', inline: 'center' });
       }
     }
-  }, [selectedBook]);
+  }, [selectedBook, books]);
 
   const handleBackToStats = () => {
     setSelectedBook(null);
@@ -34,13 +34,25 @@ const Home = () => {
     }
   };
 
+  const scrollGallery = (direction: 'left' | 'right') => {
+    if (galleryRef.current) {
+      const scrollAmount = 500;
+      galleryRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   const handleAddBook = (newBook: Book) => {
     setBooks([newBook, ...booksArray]);
     setIsAddingBook(false);
   };
 
   return (
-    <div className={`container mt-4`}>
+    <div
+      className={`container-fluid vh-100 d-flex flex-column overflow-hidden`}
+    >
       <h1 className={`text-center`}>Book Library</h1>
 
       <BookGallery
@@ -50,9 +62,10 @@ const Home = () => {
         galleryRef={galleryRef}
         setIsAddingBook={setIsAddingBook}
         isAddingBook={isAddingBook}
+        scrollGallery={scrollGallery}
       />
 
-      <div className={`mt-4 p-3 border border-secondary`}>
+      <div className={`mt-auto p-3`}>
         {isAddingBook ? (
           <AddBookForm handleAddBook={handleAddBook} />
         ) : selectedBook ? (
