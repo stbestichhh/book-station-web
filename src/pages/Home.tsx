@@ -52,7 +52,7 @@ const Home = () => {
   return (
     <div
       className={`container-fluid vh-100 d-flex flex-column overflow-hidden`}
-      style={{ backgroundColor: 'rgb(102\t103\t108\t)' }}
+      style={{ background: 'rgb(0,0,0) linear-gradient(216deg, rgba(0,0,0,1) 0%, rgba(37,37,37,1) 17%, rgba(70,70,70,1) 50%, rgba(105,104,104,1) 74%, rgba(0,0,0,1) 100%)' }}
     >
       <h1 className={`text-center`}>BookStation</h1>
 
