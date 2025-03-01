@@ -73,6 +73,7 @@ const BookGallery = ({
             bookId={book.id}
             title={book.title}
             image={book.image}
+            status={book.status}
             onSelect={() => onBookCardSelect(book)}
             isSelected={selectedBook?.id === book.id}
           />

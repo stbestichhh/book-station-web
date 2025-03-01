@@ -17,6 +17,7 @@ const AddBookCard = ({
       title={`Add new book`}
       onSelect={onSelect}
       isSelected={selectedBook === null && isAddingBook}
+      image='plus.svg'
     />
   );
 };

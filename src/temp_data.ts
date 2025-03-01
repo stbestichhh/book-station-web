@@ -4,13 +4,62 @@ export interface Book {
   author: string;
   pages: number;
   description: string;
-  image: string;
-  status: 'Reading' | 'Want to read' | 'Want to buy' | 'Completed' | '';
+  image?: string;
+  status?: 'Reading' | 'Want to read' | 'Want to buy' | 'Completed';
   pagesRead: number;
   minutesSpent: number;
 }
 
 export const books: Book[] = [
+  {
+    id: 102,
+    title: 'Book One',
+    author: 'Author A',
+    pages: 320,
+    description: 'A great book.',
+    pagesRead: 0,
+    minutesSpent: 0,
+  },
+  {
+    id: 101,
+    title: 'Book One',
+    author: 'Author A',
+    pages: 320,
+    description: 'A great book.',
+    pagesRead: 0,
+    minutesSpent: 0,
+    status: 'Want to read',
+  },
+  {
+    id: 103,
+    title: 'Book One',
+    author: 'Author A',
+    pages: 320,
+    description: 'A great book.',
+    pagesRead: 0,
+    minutesSpent: 0,
+    status: 'Want to buy',
+  },
+  {
+    id: 100,
+    title: 'Book One',
+    author: 'Author A',
+    pages: 320,
+    description: 'A great book.',
+    pagesRead: 0,
+    minutesSpent: 0,
+    status: 'Reading',
+  },
+  {
+    id: 0,
+    title: 'Book One',
+    author: 'Author A',
+    pages: 320,
+    description: 'A great book.',
+    pagesRead: 0,
+    minutesSpent: 0,
+    status: 'Completed',
+  },
   {
     id: 1,
     title: 'Book One',
@@ -75,7 +124,6 @@ export const books: Book[] = [
     image: 'https://placehold.co/600x400/000000/FFFFFF/png',
     pagesRead: 0,
     minutesSpent: 0,
-    status: '',
   },
   {
     id: 7,
@@ -86,7 +134,6 @@ export const books: Book[] = [
     image: 'https://placehold.co/600x400/000000/FFFFFF/png',
     pagesRead: 0,
     minutesSpent: 0,
-    status: '',
   },
   {
     id: 8,
@@ -97,7 +144,6 @@ export const books: Book[] = [
     image: 'https://placehold.co/600x400/000000/FFFFFF/png',
     pagesRead: 0,
     minutesSpent: 0,
-    status: '',
   },
   {
     id: 9,
@@ -108,7 +154,6 @@ export const books: Book[] = [
     image: 'https://placehold.co/600x400/000000/FFFFFF/png',
     pagesRead: 0,
     minutesSpent: 0,
-    status: '',
   },
   {
     id: 10,
@@ -119,7 +164,6 @@ export const books: Book[] = [
     image: 'https://placehold.co/600x400/000000/FFFFFF/png',
     pagesRead: 0,
     minutesSpent: 0,
-    status: '',
   },
   {
     id: 11,
@@ -130,7 +174,6 @@ export const books: Book[] = [
     image: 'https://placehold.co/600x400/000000/FFFFFF/png',
     pagesRead: 0,
     minutesSpent: 0,
-    status: '',
   },
   {
     id: 12,
@@ -141,7 +184,6 @@ export const books: Book[] = [
     image: 'https://placehold.co/600x400/000000/FFFFFF/png',
     pagesRead: 0,
     minutesSpent: 0,
-    status: '',
   },
   {
     id: 13,
@@ -152,7 +194,6 @@ export const books: Book[] = [
     image: 'https://placehold.co/600x400/000000/FFFFFF/png',
     pagesRead: 0,
     minutesSpent: 0,
-    status: '',
   },
   {
     id: 14,
@@ -163,7 +204,6 @@ export const books: Book[] = [
     image: 'https://placehold.co/600x400/000000/FFFFFF/png',
     pagesRead: 0,
     minutesSpent: 0,
-    status: '',
   },
   {
     id: 15,
@@ -174,7 +214,6 @@ export const books: Book[] = [
     image: 'https://placehold.co/600x400/000000/FFFFFF/png',
     pagesRead: 0,
     minutesSpent: 0,
-    status: '',
   },
   {
     id: 16,
@@ -185,7 +224,6 @@ export const books: Book[] = [
     image: 'https://placehold.co/600x400/000000/FFFFFF/png',
     pagesRead: 0,
     minutesSpent: 0,
-    status: '',
   },
   {
     id: 17,
@@ -196,7 +234,6 @@ export const books: Book[] = [
     image: 'https://placehold.co/600x400/000000/FFFFFF/png',
     pagesRead: 0,
     minutesSpent: 0,
-    status: '',
   },
   {
     id: 18,
@@ -207,7 +244,6 @@ export const books: Book[] = [
     image: 'https://placehold.co/600x400/000000/FFFFFF/png',
     pagesRead: 0,
     minutesSpent: 0,
-    status: '',
   },
   {
     id: 19,
@@ -218,7 +254,6 @@ export const books: Book[] = [
     image: 'https://placehold.co/600x400/000000/FFFFFF/png',
     pagesRead: 0,
     minutesSpent: 0,
-    status: '',
   },
   {
     id: 20,
