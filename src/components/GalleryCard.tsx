@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 interface GalleryCardProps {
   title: string;
   image?: string;
@@ -11,6 +13,8 @@ const GalleryCard = ({
   onSelect,
   isSelected,
 }: GalleryCardProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div
       className={`card m-2 d-inline-block ${isSelected ? 'border-5' : 'border-0'}`}
@@ -20,10 +24,18 @@ const GalleryCard = ({
         cursor: 'pointer',
         flex: '0 0 auto',
         transition: 'all 0.3s ease',
-        borderRadius: '30px',
         overflow: 'hidden',
+        borderRadius: '30px',
+        backgroundColor: 'rgb(102\t103\t108\t)',
+        border: isHovered || isSelected ? 'solid 5px transparent' : 'none',
+        boxShadow:
+          isHovered || isSelected
+            ? '0px 0px 0px 5px rgba(181, 175, 174, 0.4)'
+            : 'none',
       }}
       onClick={onSelect}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <img
         src={image}

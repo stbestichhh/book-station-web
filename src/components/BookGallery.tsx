@@ -1,8 +1,9 @@
-import { Book } from '../temd_data.ts';
+import { Book } from '../temp_data.ts';
 import * as React from 'react';
 import AddBookCard from './AddBookCard.tsx';
 import ReadingStatsCard from './ReadingStatsCard.tsx';
 import BookCard from './BookCard.tsx';
+import ArrowButton from './ArrowButton.tsx';
 
 interface BookGalleryProps {
   books: Book[];
@@ -36,20 +37,14 @@ const BookGallery = ({
   return (
     <div className="position-relative w-100">
       <div className="d-flex gap-2 justify-content-end w-100">
-        <button
-          className="btn btn-secondary rounded-circle"
-          style={{ width: '50px', height: '50px' }}
+        <ArrowButton
           onClick={() => scrollGallery('left')}
-        >
-          ←
-        </button>
-        <button
-          className="btn btn-secondary rounded-circle"
-          style={{ width: '50px', height: '50px' }}
+          arrowDirection="90"
+        />
+        <ArrowButton
           onClick={() => scrollGallery('right')}
-        >
-          →
-        </button>
+          arrowDirection="-90"
+        />
       </div>
       <div
         ref={galleryRef}

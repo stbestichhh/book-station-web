@@ -1,4 +1,4 @@
-import { books } from '../temd_data.ts';
+import { books } from '../temp_data.ts';
 
 const ReadingStats = () => {
   return (

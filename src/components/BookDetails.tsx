@@ -1,4 +1,4 @@
-import { Book } from '../temd_data.ts';
+import { Book } from '../temp_data.ts';
 
 interface BookDetailsProps {
   book: Book;

@@ -1,5 +1,5 @@
 import GalleryCard from './GalleryCard.tsx';
-import { Book } from '../temd_data.ts';
+import { Book } from '../temp_data.ts';
 
 interface AddingBookCardProps {
   onSelect: () => void;

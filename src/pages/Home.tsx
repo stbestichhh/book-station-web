@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Book, books as booksArray } from '../temd_data.ts';
+import { Book, books as booksArray } from '../temp_data.ts';
 import BookGallery from '../components/BookGallery.tsx';
 import BookDetails from '../components/BookDetails.tsx';
 import ReadingStats from '../components/ReadingStats.tsx';
@@ -52,8 +52,9 @@ const Home = () => {
   return (
     <div
       className={`container-fluid vh-100 d-flex flex-column overflow-hidden`}
+      style={{ backgroundColor: 'rgb(102\t103\t108\t)' }}
     >
-      <h1 className={`text-center`}>Book Library</h1>
+      <h1 className={`text-center`}>BookStation</h1>
 
       <BookGallery
         books={books}
