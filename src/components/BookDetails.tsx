@@ -9,7 +9,7 @@ const BookDetails = ({ book, onBack }: BookDetailsProps) => {
   return (
     <div>
       <h2>{book.title}</h2>
-      <img src={book.image} className={`img-fluid mb-3`} alt={book.title} />
+      {/*<img src={book.image} className={`img-fluid mb-3`} alt={book.title} />*/}
       <p>
         <strong>Author:</strong> {book.author}
       </p>
