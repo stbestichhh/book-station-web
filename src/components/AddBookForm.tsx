@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Book } from '../temd_data.ts';
+import { Book } from '../temp_data.ts';
 
 const AddBookForm = ({
   handleAddBook,
