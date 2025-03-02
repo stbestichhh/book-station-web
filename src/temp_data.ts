@@ -17,12 +17,13 @@ export const books: Book[] = [
     title: 'Book One',
     author: 'Author A',
     pages: 320,
-    image: 'https://images.squarespace-cdn.com/content/v1/63190485df9da2108776dc8a/6e935cdf-d4be-4fcd-8224-b3385630fafa/SOD_Cover.jpg',
+    image:
+      'https://images.squarespace-cdn.com/content/v1/63190485df9da2108776dc8a/6e935cdf-d4be-4fcd-8224-b3385630fafa/SOD_Cover.jpg',
     description: 'A great book.',
-    pagesRead: 0,
+    pagesRead: 10,
     minutesSpent: 0,
     year_finished: 2025,
-    status: 'Completed'
+    status: 'Completed',
   },
   {
     id: 101,

@@ -1088,6 +1088,7 @@ __metadata:
     globals: "npm:^15.14.0"
     prettier: "npm:^3.5.1"
     react: "npm:^19.0.0"
+    react-circular-progressbar: "npm:^2.2.0"
     react-dom: "npm:^19.0.0"
     typescript: "npm:~5.7.2"
     typescript-eslint: "npm:^8.22.0"
@@ -2401,6 +2402,15 @@ __metadata:
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
   checksum: 10c0/900a93d3cdae3acd7d16f642c29a642aea32c2026446151f0778c62ac089d4b8e6c986811076e1ae180a694cedf077d453a11b58ff0a865629a4f82ab558e102
+  languageName: node
+  linkType: hard
+
+"react-circular-progressbar@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "react-circular-progressbar@npm:2.2.0"
+  peerDependencies:
+    react: ">=0.14.0"
+  checksum: 10c0/77655598d48a826fff9a6fd2f6b61349bb2e762d1774c0bcd5a374916347e1d03821e51cd7ff0f294843f5088e569b0c266064af0a229403c510c238b3390a3b
   languageName: node
   linkType: hard
 

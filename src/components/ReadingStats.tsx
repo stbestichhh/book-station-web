@@ -1,45 +1,81 @@
 import { books } from '../temp_data.ts';
+import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+import InfoCard from './InfoCard.tsx';
 
 const ReadingStats = () => {
-  console.log(books.filter((book) => book.status === 'Completed' && book.year_finished === new Date().getFullYear()).length);
-
   return (
     <>
-      <div>
-        <h2 style={{
-          color: 'white'
-        }}>Welcome</h2>
-        <div
-          className={`card d-inline-block`}
-          style={{
-            width: '300px',
-            height: '300px',
-            cursor: 'pointer',
-            flex: '0 0 auto',
-            transition: 'all 0.3s ease',
-            overflow: 'hidden',
-            borderRadius: '30px',
-            backgroundColor: 'rgb(38, 43, 52)',
-          }}
-        ></div>
-        <p>
-          <strong>Pages read:</strong>{' '}
-          {books.reduce((acc, book) => acc + book.pagesRead, 0)}
-        </p>
-        <p>
-          <strong>Minutes spent reading:</strong>{' '}
-          {books.reduce((acc, book) => acc + book.minutesSpent, 0)}
-        </p>
-        <p>
-          <strong>Books completed:</strong>{' '}
-          {books.filter((book) => book.status === 'Completed').length}
-        </p>
-        <p>
-          <strong>Yearly reading goal:</strong> {books.filter((book) => book.status === 'Completed' && book.year_finished === new Date().getFullYear()).length}/5 books
-        </p>
-        <p>
-          <strong>Daily reading goal:</strong> 15 minutes
-        </p>
+      <h1
+        style={{
+          color: 'white',
+          marginBottom: '20px',
+          fontSize: '80px',
+        }}
+      >
+        Welcome
+      </h1>
+      <div
+        style={{
+          paddingLeft: '10px',
+        }}
+      >
+        <InfoCard>
+          <h1 style={{ color: 'white' }}>
+            You read{' '}
+            <span style={{ color: 'rgb(57, 125, 236)' }}>
+              {books.reduce((acc, book) => acc + book.pagesRead, 0)} pages
+            </span>
+            .
+          </h1>
+        </InfoCard>
+        <InfoCard>
+          <h1 style={{ color: 'white' }}>
+            You read for{' '}
+            <span style={{ color: 'rgb(95, 92, 222)' }}>
+              {books.reduce((acc, book) => acc + book.minutesSpent, 0)}m
+            </span>
+            .
+          </h1>
+        </InfoCard>
+        <InfoCard>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <h1 style={{ color: 'white' }}>
+              Yearly reading goal
+              <span style={{ color: 'orange' }}> 5 books</span>.
+            </h1>
+          </div>
+        </InfoCard>
+        <InfoCard>
+          <h1 style={{ color: 'white' }}>
+            You finished{' '}
+            <span style={{ color: 'rgb(105, 206, 103)' }}>
+              {books.filter((book) => book.status === 'Completed').length} books
+            </span>
+            .
+          </h1>
+        </InfoCard>
+        <InfoCard>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <h1 style={{ color: 'white' }}>
+              Daily reading goal
+              <span style={{ color: 'yellow' }}> 15m</span>.
+            </h1>
+            <div style={{ width: '30%', height: '30%', marginLeft: '10px' }}>
+              <CircularProgressbar
+                value={3}
+                maxValue={15}
+                circleRatio={0.75}
+                strokeWidth={12}
+                styles={buildStyles({
+                  pathColor: 'yellow',
+                  rotation: 1 / 2 + 1 / 8,
+                  strokeLinecap: 'round',
+                  trailColor: 'darkgrey',
+                })}
+              />
+            </div>
+          </div>
+        </InfoCard>
       </div>
     </>
   );

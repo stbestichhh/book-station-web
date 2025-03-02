@@ -53,15 +53,19 @@ const Home = () => {
   return (
     <div
       className={`container-fluid d-flex flex-column overflow-hidden`}
-      style={{ background: 'rgb(0,0,0) linear-gradient(216deg, rgba(0,0,0,1) 0%, rgba(37,37,37,1) 17%, rgba(70,70,70,1) 50%, rgba(105,104,104,1) 74%, rgba(0,0,0,1) 100%)', minHeight: '100vh' }}
+      style={{
+        background:
+          'rgb(0,0,0) linear-gradient(216deg, rgba(0,0,0,1) 0%, rgba(37,37,37,1) 17%, rgba(70,70,70,1) 50%, rgba(105,104,104,1) 74%, rgba(0,0,0,1) 100%)',
+        minHeight: '100vh',
+      }}
     >
       <h1 className={`text-center text-light`}>BookStation</h1>
 
       <motion.div
-        initial={{opacity: 0, z: 10}}
-        animate={{opacity: 1, z: 0}}
-        exit={{opacity: 0, z: -10}}
-        transition={{duration: 1}}
+        initial={{ opacity: 0, z: 10 }}
+        animate={{ opacity: 1, z: 0 }}
+        exit={{ opacity: 0, z: -10 }}
+        transition={{ duration: 1 }}
         style={{
           minHeight: '420px',
           overflow: 'hidden',
@@ -78,24 +82,27 @@ const Home = () => {
         />
       </motion.div>
 
-      <div className={`flex-grow-1 px-4 d-flex justify-content-start align-items-start`} style={{marginTop: '20px'}}>
+      <div
+        className={`flex-grow-1 px-4 d-flex justify-content-start align-items-start`}
+        style={{ marginTop: '20px' }}
+      >
         <div className="col-md-3"></div>
         <div className="col-md-6">
-            <motion.div
-              key={isAddingBook || selectedBook ? 'active' : 'default'}
-              initial={{opacity: 0, z: 10}}
-              animate={{opacity: 1, z: 0}}
-              exit={{opacity: 0, z: -10}}
-              transition={{duration: 1}}
-            >
-              {isAddingBook ? (
-                <AddBookForm handleAddBook={handleAddBook}/>
-              ) : selectedBook ? (
-                <BookDetails book={selectedBook} onBack={handleBackToStats}/>
-              ) : (
-                <ReadingStats/>
-              )}
-            </motion.div>
+          <motion.div
+            key={isAddingBook || selectedBook ? 'active' : 'default'}
+            initial={{ opacity: 0, z: 10 }}
+            animate={{ opacity: 1, z: 0 }}
+            exit={{ opacity: 0, z: -10 }}
+            transition={{ duration: 1 }}
+          >
+            {isAddingBook ? (
+              <AddBookForm handleAddBook={handleAddBook} />
+            ) : selectedBook ? (
+              <BookDetails book={selectedBook} onBack={handleBackToStats} />
+            ) : (
+              <ReadingStats />
+            )}
+          </motion.div>
         </div>
       </div>
     </div>

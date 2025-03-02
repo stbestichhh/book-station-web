@@ -24,7 +24,7 @@ const ReadingStatsCard = ({
       title={`Reading stats`}
       onSelect={onReadingStatsSelect}
       isSelected={selectedBook === null && !isAddingBook}
-      image='main_card.svg'
+      image="main_card.svg"
     />
   );
 };

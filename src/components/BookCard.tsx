@@ -17,21 +17,23 @@ const BookCard = ({
   image,
   onSelect,
   isSelected,
-  status
+  status,
 }: BookCardProps) => {
   let bookImage = image || 'book.svg';
 
   if (!image && status) {
     const statusMap: Record<string, string> = {
-      'Reading': 'book_started.svg',
-      'Completed': 'book_finished.svg',
+      Reading: 'book_started.svg',
+      Completed: 'book_finished.svg',
     };
 
     bookImage = statusMap[status] || 'book.svg';
   }
 
   useEffect(() => {
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toogle="tooltip"]')
+    const tooltipTriggerList = document.querySelectorAll(
+      '[data-bs-toogle="tooltip"]'
+    );
     for (const tooltipElement of tooltipTriggerList) {
       new window.bootstrap.Tooltip(tooltipElement);
     }
