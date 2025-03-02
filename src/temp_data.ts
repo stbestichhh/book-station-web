@@ -8,6 +8,7 @@ export interface Book {
   status?: 'Reading' | 'Want to read' | 'Want to buy' | 'Completed';
   pagesRead: number;
   minutesSpent: number;
+  year_finished?: number;
 }
 
 export const books: Book[] = [
@@ -20,6 +21,8 @@ export const books: Book[] = [
     description: 'A great book.',
     pagesRead: 0,
     minutesSpent: 0,
+    year_finished: 2025,
+    status: 'Completed'
   },
   {
     id: 101,

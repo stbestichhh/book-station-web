@@ -1,6 +1,8 @@
 import { books } from '../temp_data.ts';
 
 const ReadingStats = () => {
+  console.log(books.filter((book) => book.status === 'Completed' && book.year_finished === new Date().getFullYear()).length);
+
   return (
     <>
       <div>
@@ -33,7 +35,7 @@ const ReadingStats = () => {
           {books.filter((book) => book.status === 'Completed').length}
         </p>
         <p>
-          <strong>Yearly reading goal:</strong> 5 books
+          <strong>Yearly reading goal:</strong> {books.filter((book) => book.status === 'Completed' && book.year_finished === new Date().getFullYear()).length}/5 books
         </p>
         <p>
           <strong>Daily reading goal:</strong> 15 minutes
