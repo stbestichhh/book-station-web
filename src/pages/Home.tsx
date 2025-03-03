@@ -88,21 +88,13 @@ const Home = () => {
       >
         <div className="col-md-3"></div>
         <div className="col-md-6">
-          <motion.div
-            key={isAddingBook || selectedBook ? 'active' : 'default'}
-            initial={{ opacity: 0, z: 10 }}
-            animate={{ opacity: 1, z: 0 }}
-            exit={{ opacity: 0, z: -10 }}
-            transition={{ duration: 1 }}
-          >
-            {isAddingBook ? (
-              <AddBookForm handleAddBook={handleAddBook} />
-            ) : selectedBook ? (
-              <BookDetails book={selectedBook} onBack={handleBackToStats} />
-            ) : (
-              <ReadingStats />
-            )}
-          </motion.div>
+          {isAddingBook ? (
+            <AddBookForm handleAddBook={handleAddBook} />
+          ) : selectedBook ? (
+            <BookDetails book={selectedBook} onBack={handleBackToStats} />
+          ) : (
+            <ReadingStats />
+          )}
         </div>
       </div>
     </div>

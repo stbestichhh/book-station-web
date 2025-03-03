@@ -21,7 +21,7 @@ export const books: Book[] = [
       'https://images.squarespace-cdn.com/content/v1/63190485df9da2108776dc8a/6e935cdf-d4be-4fcd-8224-b3385630fafa/SOD_Cover.jpg',
     description: 'A great book.',
     pagesRead: 10,
-    minutesSpent: 0,
+    minutesSpent: 10,
     year_finished: 2025,
     status: 'Completed',
   },
