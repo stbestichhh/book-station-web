@@ -33,8 +33,8 @@ const AddBookForm = ({
       author,
       pages: Number(pages),
       description,
-      image: image || 'https://placehold.co/600x400/000000/FFFFFF/png',
-      status: 'Reading',
+      image: image,
+      status: 'Want to read',
       pagesRead: 0,
       minutesSpent: 0,
     });
