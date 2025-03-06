@@ -48,11 +48,10 @@ const ReadingStats = () => {
         </MotionDivZOpacity>
         <MotionDivZOpacity delay={0.2}>
           <InfoCard>
-            <h1 style={{color: 'white'}}>
+            <h1 style={{ color: 'white' }}>
               Read today{' '}
-              <span style={{color: 'rgb(57, 125, 236)'}}>
-              5 pages
-            </span> for <span style={{color: 'orangered'}}> 3m</span>.
+              <span style={{ color: 'rgb(57, 125, 236)' }}>5 pages</span> for{' '}
+              <span style={{ color: 'orangered' }}> 3m</span>.
             </h1>
           </InfoCard>
         </MotionDivZOpacity>
@@ -61,19 +60,20 @@ const ReadingStats = () => {
             <h1 style={{ color: 'white' }}>
               You finished{' '}
               <span style={{ color: 'rgb(105, 206, 103)' }}>
-              {books.filter((book) => book.status === 'Completed').length} books
-            </span>
+                {books.filter((book) => book.status === 'Completed').length}{' '}
+                books
+              </span>
               .
             </h1>
           </InfoCard>
         </MotionDivZOpacity>
         <MotionDivZOpacity delay={0.1}>
           <InfoCard>
-            <h1 style={{color: 'white'}}>
+            <h1 style={{ color: 'white' }}>
               You read{' '}
               <span style={{ color: 'rgb(57, 125, 236)' }}>
-              {books.reduce((acc, book) => acc + book.pagesRead, 0)} pages
-            </span>
+                {books.reduce((acc, book) => acc + book.pagesRead, 0)} pages
+              </span>
               .
             </h1>
           </InfoCard>
@@ -83,8 +83,8 @@ const ReadingStats = () => {
             <h1 style={{ color: 'white' }}>
               You read for{' '}
               <span style={{ color: 'rgb(95, 92, 222)' }}>
-              {books.reduce((acc, book) => acc + book.minutesSpent, 0)}m
-            </span>
+                {books.reduce((acc, book) => acc + book.minutesSpent, 0)}m
+              </span>
               .
             </h1>
           </InfoCard>
