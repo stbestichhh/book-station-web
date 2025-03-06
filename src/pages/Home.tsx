@@ -52,14 +52,14 @@ const Home = () => {
 
   return (
     <div
-      className={`container-fluid d-flex flex-column overflow-hidden`}
+      className={`d-flex flex-column overflow-hidden`}
       style={{
         background:
           'rgb(0,0,0) linear-gradient(216deg, rgba(0,0,0,1) 0%, rgba(37,37,37,1) 17%, rgba(70,70,70,1) 50%, rgba(105,104,104,1) 74%, rgba(0,0,0,1) 100%)',
         minHeight: '100vh',
       }}
     >
-      <h1 className={`text-center text-light`}>BookStation</h1>
+      <h1 className={`mt-3 text-center text-light`}>BookStation</h1>
 
       <motion.div
         initial={{ opacity: 0, z: 10 }}

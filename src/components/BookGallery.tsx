@@ -36,7 +36,7 @@ const BookGallery = ({
 
   return (
     <div className="position-relative w-100" style={{ minHeight: '320px' }}>
-      <div className="d-flex gap-2 justify-content-end w-100">
+      <div className="d-flex gap-2 justify-content-end w-100" style={{ paddingRight: '15px' }}>
         <ArrowButton
           onClick={() => scrollGallery('left')}
           arrowDirection="90"
