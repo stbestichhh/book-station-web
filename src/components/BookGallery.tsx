@@ -51,12 +51,16 @@ const BookGallery = ({
       </div>
       <div
         ref={galleryRef}
-        className={`d-flex p-3 overflow-hidden`}
+        className={`d-flex p-3`}
         style={{
           whiteSpace: 'nowrap',
           position: 'static',
           top: 0,
           width: '100vw',
+          overflowX: 'auto',
+          touchAction: 'pan-x',
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'none',
         }}
       >
         <AddBookCard

@@ -209,9 +209,8 @@ const AddBookForm = ({
                   type="submit"
                   style={{
                     padding: '20px 60px 20px 60px',
-                    backgroundColor: isHovered
-                      ? 'rgb(62, 65, 72)'
-                      : 'rgb(38, 43, 52)',
+                    backgroundColor: isHovered ? '#ededed' : 'rgb(38, 43, 52)',
+                    color: isHovered ? 'rgb(38, 43, 52)' : '#ededed',
                     border: 'none',
                     transition:
                       'background-color 0.3s ease, transform 0.2s ease',
@@ -223,7 +222,7 @@ const AddBookForm = ({
                   onMouseUp={handleMouseUp}
                   onMouseOut={handleMouseUp}
                 >
-                  Add Book
+                  <strong>Add Book</strong>
                 </button>
               </MotionDivZOpacity>
             </div>
