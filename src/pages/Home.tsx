@@ -50,6 +50,11 @@ const Home = () => {
     setIsAddingBook(false);
   };
 
+  const handleDeleteBook = (book: Book) => {
+    books.splice(books.indexOf(book), 1);
+    setBooks([...books]);
+  };
+
   return (
     <div
       className={`d-flex flex-column overflow-hidden`}
@@ -91,7 +96,11 @@ const Home = () => {
           {isAddingBook ? (
             <AddBookForm handleAddBook={handleAddBook} />
           ) : selectedBook ? (
-            <BookDetails book={selectedBook} onBack={handleBackToStats} />
+            <BookDetails
+              book={selectedBook}
+              onBack={handleBackToStats}
+              handleDeleteBook={handleDeleteBook}
+            />
           ) : (
             <ReadingStats />
           )}

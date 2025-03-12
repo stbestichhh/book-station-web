@@ -2,6 +2,7 @@ import { books } from '../temp_data.ts';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import InfoCard from './InfoCard.tsx';
 import MotionDivZOpacity from './MotionDivZOpacity.tsx';
+import { getReadingTimeToday } from '../utils/dailyReadingTracket.tsx';
 
 const ReadingStats = () => {
   return (
@@ -31,7 +32,7 @@ const ReadingStats = () => {
               </h1>
               <div style={{ width: '30%', height: '30%', marginLeft: '10px' }}>
                 <CircularProgressbar
-                  value={3}
+                  value={getReadingTimeToday()}
                   maxValue={15}
                   circleRatio={0.75}
                   strokeWidth={12}
@@ -51,7 +52,11 @@ const ReadingStats = () => {
             <h1 style={{ color: 'white' }}>
               Read today{' '}
               <span style={{ color: 'rgb(57, 125, 236)' }}>5 pages</span> for{' '}
-              <span style={{ color: 'orangered' }}> 3m</span>.
+              <span style={{ color: 'orangered' }}>
+                {' '}
+                {getReadingTimeToday()}m
+              </span>
+              .
             </h1>
           </InfoCard>
         </MotionDivZOpacity>
