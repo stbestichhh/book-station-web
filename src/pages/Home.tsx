@@ -53,6 +53,20 @@ const Home = () => {
   const handleDeleteBook = (book: Book) => {
     books.splice(books.indexOf(book), 1);
     setBooks([...books]);
+    handleBackToStats();
+  };
+
+  const handleEditBook = (
+    book: Book,
+    bookProps: Partial<Exclude<Book, 'id'>>
+  ) => {
+    const newBook = {
+      ...book,
+      ...bookProps,
+    };
+    books.splice(books.indexOf(book), 1, newBook);
+    setBooks([...books]);
+    handleBackToStats();
   };
 
   return (
@@ -100,6 +114,7 @@ const Home = () => {
               book={selectedBook}
               onBack={handleBackToStats}
               handleDeleteBook={handleDeleteBook}
+              handleEditBook={handleEditBook}
             />
           ) : (
             <ReadingStats />

@@ -94,6 +94,25 @@ const ReadingStats = () => {
             </h1>
           </InfoCard>
         </MotionDivZOpacity>
+        <MotionDivZOpacity delay={0.8}>
+          <InfoCard>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <h1 style={{ color: 'white' }}>
+                Finished this year
+                <span style={{ color: 'rgb(105, 206, 103)' }}>
+                  {' '}
+                  {
+                    books.filter(
+                      (book) => book.year_finished === new Date().getFullYear()
+                    ).length
+                  }{' '}
+                  books
+                </span>
+                .
+              </h1>
+            </div>
+          </InfoCard>
+        </MotionDivZOpacity>
         <MotionDivZOpacity delay={0.2}>
           <InfoCard>
             <div style={{ display: 'flex', alignItems: 'center' }}>

@@ -3,11 +3,13 @@ import MotionDivZOpacity from './MotionDivZOpacity.tsx';
 import { useEffect, useRef, useState } from 'react';
 import { useStopwatch } from '../hooks/useTimer.tsx';
 import { addReadingMinutesToday } from '../utils/dailyReadingTracket.tsx';
+import EditBookForm from './EditBookForm.tsx';
 
 interface BookDetailsProps {
   book: Book;
   onBack: () => void;
   handleDeleteBook: (book: Book) => void;
+  handleEditBook: (book: Book, bookProps: Partial<Exclude<Book, 'id'>>) => void;
 }
 
 interface ButtonState {
@@ -15,9 +17,19 @@ interface ButtonState {
   isPressed: boolean;
 }
 
-const BookDetails = ({ book, onBack, handleDeleteBook }: BookDetailsProps) => {
+const BookDetails = ({
+  book,
+  onBack,
+  handleDeleteBook,
+  handleEditBook,
+}: BookDetailsProps) => {
   const [actionButtonPressed, setActionButtonPressed] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [isEditingBook, setIsEditingBook] = useState(false);
+
+  const handleEditClick = () => {
+    setIsEditingBook(!isEditingBook);
+  };
 
   const handleDeleteClick = () => {
     setShowConfirmDelete(!showConfirmDelete);
@@ -275,6 +287,7 @@ const BookDetails = ({ book, onBack, handleDeleteBook }: BookDetailsProps) => {
                 onMouseOut={() =>
                   handleMouseEvent('edit_btn', 'isPressed', false)
                 }
+                onClick={handleEditClick}
               >
                 <img
                   src="edit_button.svg"
@@ -421,35 +434,45 @@ const BookDetails = ({ book, onBack, handleDeleteBook }: BookDetailsProps) => {
             </button>
           </div>
         </MotionDivZOpacity>
-        <MotionDivZOpacity delay={0.2} classes={''}>
-          <h1
-            style={{
-              color: 'white',
-              marginBottom: '10px',
-              fontSize: '25px',
-              fontWeight: 'lighter',
-            }}
-          >
-            Pages read: {book.pagesRead}/{book.pages} -{' '}
-            {((book.pagesRead / book.pages) * 100).toFixed(1)}%
-          </h1>
-        </MotionDivZOpacity>
-        <MotionDivZOpacity delay={0.3} classes={''}>
-          <div>
-            <h1
-              style={{
-                marginBottom: '2px',
-                fontSize: '25px',
-                fontWeight: 'normal',
-              }}
-            >
-              About the book
-            </h1>
-            <p style={{ marginLeft: '2px', fontSize: '20px' }}>
-              {book.description}
-            </p>
-          </div>
-        </MotionDivZOpacity>
+        {isEditingBook ? (
+          <EditBookForm
+            handleEditBook={handleEditBook}
+            book={book}
+            setIsEditingBook={setIsEditingBook}
+          />
+        ) : (
+          <>
+            <MotionDivZOpacity delay={0.2} classes={''}>
+              <h1
+                style={{
+                  color: 'white',
+                  marginBottom: '10px',
+                  fontSize: '25px',
+                  fontWeight: 'lighter',
+                }}
+              >
+                Pages read: {book.pagesRead}/{book.pages} -{' '}
+                {((book.pagesRead / book.pages) * 100).toFixed(1)}%
+              </h1>
+            </MotionDivZOpacity>
+            <MotionDivZOpacity delay={0.3} classes={''}>
+              <div>
+                <h1
+                  style={{
+                    marginBottom: '2px',
+                    fontSize: '25px',
+                    fontWeight: 'normal',
+                  }}
+                >
+                  About the book
+                </h1>
+                <p style={{ marginLeft: '2px', fontSize: '20px' }}>
+                  {book.description}
+                </p>
+              </div>
+            </MotionDivZOpacity>
+          </>
+        )}
       </div>
     </MotionDivZOpacity>
   );

@@ -1,3 +1,5 @@
+export type BookStatus = 'Reading' | 'Want to read' | 'Completed';
+
 export interface Book {
   id: number;
   title: string;
@@ -5,7 +7,7 @@ export interface Book {
   pages: number;
   description: string;
   image?: string;
-  status?: 'Reading' | 'Want to read' | 'Want to buy' | 'Completed';
+  status?: BookStatus;
   pagesRead: number;
   minutesSpent: number;
   year_finished?: number;
