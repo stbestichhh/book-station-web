@@ -104,7 +104,7 @@ const Home = () => {
 
       <div
         className={`flex-grow-1 px-4 d-flex justify-content-start align-items-start`}
-        style={{ marginTop: '20px' }}
+        style={{ marginTop: '30px' }}
       >
         <div className="col-md-3"></div>
         <div className="col-md-6">
@@ -118,7 +118,7 @@ const Home = () => {
               handleEditBook={handleEditBook}
             />
           ) : (
-            <ReadingStats />
+            <ReadingStats books={books} />
           )}
         </div>
       </div>

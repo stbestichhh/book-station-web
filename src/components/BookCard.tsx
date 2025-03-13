@@ -1,12 +1,13 @@
 import GalleryCard from './GalleryCard.tsx';
 import { getFullBookId } from '../utils';
 import { useEffect } from 'react';
+import { BookStatus } from '../temp_data.ts';
 
 interface BookCardProps {
   bookId: number;
   title: string;
   image?: string;
-  status?: 'Reading' | 'Want to read' | 'Want to buy' | 'Completed';
+  status?: BookStatus;
   onSelect: () => void;
   isSelected: boolean;
 }

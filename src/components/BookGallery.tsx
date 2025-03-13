@@ -38,7 +38,7 @@ const BookGallery = ({
         Completed: 'book_finished.svg',
       };
 
-      bookImage = statusMap[status] || 'book.svg';
+      bookImage = statusMap[book.status] || 'book.svg';
     }
     return bookImage;
   };
@@ -71,7 +71,7 @@ const BookGallery = ({
   };
 
   return (
-    <div className="position-relative w-100" style={{ minHeight: '320px' }}>
+    <div className="position-relative w-100" style={{ minHeight: '405px' }}>
       <div
         className="d-flex w-100"
         style={{

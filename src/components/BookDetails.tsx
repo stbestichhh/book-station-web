@@ -2,8 +2,8 @@ import { Book } from '../temp_data.ts';
 import MotionDivZOpacity from './MotionDivZOpacity.tsx';
 import { useEffect, useRef, useState } from 'react';
 import { useStopwatch } from '../hooks/useTimer.tsx';
-import { addReadingMinutesToday } from '../utils/dailyReadingTracket.tsx';
 import EditBookForm from './EditBookForm.tsx';
+import { addReadingMinutesToday } from '../utils/dailyReadingTracket.tsx';
 
 interface BookDetailsProps {
   book: Book;
@@ -26,6 +26,7 @@ const BookDetails = ({
   const [actionButtonPressed, setActionButtonPressed] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [isEditingBook, setIsEditingBook] = useState(false);
+  const [addPagesRead, setAddPagesRead] = useState(false);
 
   const handleEditClick = () => {
     setIsEditingBook(!isEditingBook);
@@ -56,6 +57,8 @@ const BookDetails = ({
       book.minutesSpent += totalMinutes;
       addReadingMinutesToday(totalMinutes);
       reset();
+      setAddPagesRead(true);
+      setIsEditingBook(true);
     }
     toggleStopwatch();
   };
@@ -440,6 +443,8 @@ const BookDetails = ({
             handleEditBook={handleEditBook}
             book={book}
             setIsEditingBook={setIsEditingBook}
+            addPagesRead={addPagesRead}
+            setAddPagesRead={setAddPagesRead}
           />
         ) : (
           <>

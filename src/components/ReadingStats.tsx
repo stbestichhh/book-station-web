@@ -1,10 +1,13 @@
-import { books } from '../temp_data.ts';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import InfoCard from './InfoCard.tsx';
 import MotionDivZOpacity from './MotionDivZOpacity.tsx';
-import { getReadingTimeToday } from '../utils/dailyReadingTracket.tsx';
+import {
+  getPagesReadToday,
+  getReadingTimeToday,
+} from '../utils/dailyReadingTracket.tsx';
+import { Book } from '../temp_data.ts';
 
-const ReadingStats = () => {
+const ReadingStats = ({ books }: { books: Book[] }) => {
   return (
     <>
       <MotionDivZOpacity>
@@ -51,7 +54,10 @@ const ReadingStats = () => {
           <InfoCard>
             <h1 style={{ color: 'white' }}>
               Read today{' '}
-              <span style={{ color: 'rgb(57, 125, 236)' }}>5 pages</span> for{' '}
+              <span style={{ color: 'rgb(57, 125, 236)' }}>
+                {getPagesReadToday()} pages
+              </span>{' '}
+              for{' '}
               <span style={{ color: 'orangered' }}>
                 {' '}
                 {getReadingTimeToday()}m
@@ -120,6 +126,24 @@ const ReadingStats = () => {
                 Yearly reading goal
                 <span style={{ color: 'orange' }}> 5 books</span>.
               </h1>
+              <div style={{ width: '25%', height: '25%', marginLeft: '20px' }}>
+                <CircularProgressbar
+                  value={
+                    books.filter(
+                      (book) => book.year_finished === new Date().getFullYear()
+                    ).length
+                  }
+                  maxValue={5}
+                  circleRatio={0.75}
+                  strokeWidth={12}
+                  styles={buildStyles({
+                    pathColor: 'orange',
+                    rotation: 1 / 2 + 1 / 8,
+                    strokeLinecap: 'round',
+                    trailColor: '#ededed',
+                  })}
+                />
+              </div>
             </div>
           </InfoCard>
         </MotionDivZOpacity>
