@@ -81,6 +81,7 @@ const BookDetails = ({
       reset();
       setShowConfirmDelete(false);
       setActionButtonPressed(false);
+      setIsEditingBook(false);
     }
     currentBookRef.current = book;
   }, [book, minutes, seconds, hours, reset]);
