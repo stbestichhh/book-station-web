@@ -81,8 +81,6 @@ const Home = () => {
         minHeight: '100vh',
       }}
     >
-      <h1 className={`mt-3 text-center text-light`}>BookStation</h1>
-
       <motion.div
         initial={{ opacity: 0, z: 10 }}
         animate={{ opacity: 1, z: 0 }}

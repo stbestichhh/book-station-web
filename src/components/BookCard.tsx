@@ -17,19 +17,7 @@ const BookCard = ({
   image,
   onSelect,
   isSelected,
-  status,
 }: BookCardProps) => {
-  let bookImage = image || 'book.svg';
-
-  if (!image && status) {
-    const statusMap: Record<string, string> = {
-      Reading: 'book_started.svg',
-      Completed: 'book_finished.svg',
-    };
-
-    bookImage = statusMap[status] || 'book.svg';
-  }
-
   useEffect(() => {
     const tooltipTriggerList = document.querySelectorAll(
       '[data-bs-toogle="tooltip"]'
@@ -44,7 +32,7 @@ const BookCard = ({
       <GalleryCard
         title={title}
         onSelect={onSelect}
-        image={bookImage}
+        image={image}
         isSelected={isSelected}
       />
     </div>
