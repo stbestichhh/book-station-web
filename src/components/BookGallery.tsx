@@ -1,4 +1,4 @@
-import { Book } from '../book.type.ts';
+import { Book, BookStatus } from '../book.type.ts';
 import * as React from 'react';
 import AddBookCard from './AddBookCard.tsx';
 import ReadingStatsCard from './ReadingStatsCard.tsx';
@@ -28,6 +28,9 @@ const BookGallery = ({
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchResult, setSearchResult] = useState<Book[]>([]);
   const [searchIsFocused, setSearchIsFocused] = useState(false);
+  const [selectedStatus, setSelectedStatus] = useState<'All' | BookStatus>(
+    'All'
+  );
 
   const getBookImage = (book: Book) => {
     let bookImage = book.image || 'book.svg';
@@ -69,6 +72,10 @@ const BookGallery = ({
     setIsAddingBook(false);
     onSelect(book);
   };
+
+  const filterBooks = books.filter(
+    (book) => selectedStatus === 'All' || book.status === selectedStatus
+  );
 
   return (
     <div className="position-relative w-100" style={{ minHeight: '405px' }}>
@@ -113,8 +120,30 @@ const BookGallery = ({
               backgroundColor: 'rgba(39, 43, 51, 0.2)',
               color: 'white',
               borderColor: 'transparent',
+              marginRight: '15px',
             }}
           />
+          <select
+            value={selectedStatus}
+            onChange={(e) =>
+              setSelectedStatus(e.target.value as 'All' | BookStatus)
+            }
+            className="form-control"
+            style={{
+              width: `150px`,
+              textAlign: 'center',
+              borderRadius: '20px',
+              padding: '10px 15px 10px 15px',
+              backgroundColor: 'rgba(39, 43, 51, 0.2)',
+              color: 'white',
+              borderColor: 'transparent',
+            }}
+          >
+            <option value={'All'}>All</option>
+            <option value={'Reading'}>Reading</option>
+            <option value={'Completed'}>Completed</option>
+            <option value={'Want to read'}>Want to read</option>
+          </select>
           {searchIsFocused && searchResult.length > 0 && (
             <div
               className={'position-absolute'}
@@ -218,7 +247,7 @@ const BookGallery = ({
           setIsAddingBook={setIsAddingBook}
           isAddingBook={isAddingBook}
         />
-        {books.map((book) => (
+        {filterBooks.map((book) => (
           <BookCard
             key={book.id}
             bookId={book.id}
