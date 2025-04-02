@@ -1,4 +1,4 @@
-import { Book } from '../temp_data.ts';
+import { Book } from '../book.type.ts';
 import * as React from 'react';
 import AddBookCard from './AddBookCard.tsx';
 import ReadingStatsCard from './ReadingStatsCard.tsx';

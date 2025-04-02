@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Book } from '../temp_data.ts';
+import { Book } from '../book.type.ts';
 import MotionDivZOpacity from './MotionDivZOpacity.tsx';
 import InfoCard from './InfoCard.tsx';
 
@@ -28,7 +28,6 @@ const AddBookForm = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     handleAddBook({
-      id: Date.now(),
       title,
       author,
       pages: Number(pages),
@@ -37,7 +36,7 @@ const AddBookForm = ({
       status: 'Want to read',
       pagesRead: 0,
       minutesSpent: 0,
-    });
+    } as Book);
     setTitle('');
     setAuthor('');
     setPages('');

@@ -1,4 +1,4 @@
-import { Book } from '../temp_data.ts';
+import { Book } from '../book.type.ts';
 import MotionDivZOpacity from './MotionDivZOpacity.tsx';
 import { useEffect, useRef, useState } from 'react';
 import { useStopwatch } from '../hooks/useTimer.tsx';
@@ -27,6 +27,9 @@ const BookDetails = ({
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [isEditingBook, setIsEditingBook] = useState(false);
   const [addPagesRead, setAddPagesRead] = useState(false);
+  const [totalMinutesSpent, setTotalMinutesSpent] = useState(
+    book.minutesSpent ?? 0
+  );
 
   const handleEditClick = () => {
     setIsEditingBook(!isEditingBook);
@@ -54,7 +57,7 @@ const BookDetails = ({
   const handleStopwatch = () => {
     if (mark) {
       const totalMinutes = minutes + hours * 60;
-      book.minutesSpent += totalMinutes;
+      setTotalMinutesSpent((prev) => prev + totalMinutes);
       addReadingMinutesToday(totalMinutes);
       reset();
       setAddPagesRead(true);
@@ -79,7 +82,7 @@ const BookDetails = ({
   useEffect(() => {
     if (currentBookRef.current && currentBookRef.current.id !== book.id) {
       if (minutes > 0 || seconds > 0 || hours > 0) {
-        currentBookRef.current.minutesSpent += minutes + hours * 60;
+        currentBookRef.current.minutesSpent! += minutes + hours * 60;
       }
       reset();
       setShowConfirmDelete(false);
@@ -445,6 +448,7 @@ const BookDetails = ({
             setIsEditingBook={setIsEditingBook}
             addPagesRead={addPagesRead}
             setAddPagesRead={setAddPagesRead}
+            totalMinutesRead={totalMinutesSpent}
           />
         ) : (
           <>
@@ -458,7 +462,7 @@ const BookDetails = ({
                 }}
               >
                 Pages read: {book.pagesRead}/{book.pages} -{' '}
-                {((book.pagesRead / book.pages) * 100).toFixed(1)}%
+                {((book.pagesRead! / book.pages) * 100).toFixed(1)}%
               </h1>
             </MotionDivZOpacity>
             <MotionDivZOpacity delay={0.3} classes={''}>

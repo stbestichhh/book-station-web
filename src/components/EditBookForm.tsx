@@ -1,4 +1,4 @@
-import { Book, BookStatus } from '../temp_data.ts';
+import { Book, BookStatus } from '../book.type.ts';
 import React, { useState } from 'react';
 import MotionDivZOpacity from './MotionDivZOpacity.tsx';
 import InfoCard from './InfoCard.tsx';
@@ -10,6 +10,7 @@ interface EditBookFormProps {
   setIsEditingBook: (value: boolean) => void;
   setAddPagesRead: (value: boolean) => void;
   addPagesRead: boolean;
+  totalMinutesRead: number;
 }
 
 const EditBookForm = ({
@@ -18,6 +19,7 @@ const EditBookForm = ({
   setIsEditingBook,
   addPagesRead,
   setAddPagesRead,
+  totalMinutesRead,
 }: EditBookFormProps) => {
   const [title, setTitle] = useState(book.title);
   const [author, setAuthor] = useState(book.author);
@@ -25,7 +27,7 @@ const EditBookForm = ({
   const [pagesRead, setPagesRead] = useState(String(book.pagesRead));
   const [image, setImage] = useState(book.image);
   const [description, setDescription] = useState(book.description);
-  const [minutesSpent, setMinutesSpent] = useState(String(book.minutesSpent));
+  const [minutesSpent, setMinutesSpent] = useState(String(totalMinutesRead));
   const [status, setStatus] = useState<BookStatus | undefined>(book.status);
   const [bookPagesReadBeforeEdit, setBookPagesReadBeforeEdit] =
     useState<number>(Number(pagesRead));
@@ -78,8 +80,8 @@ const EditBookForm = ({
       image: changeImageToStatus(image, status),
       minutesSpent: Number(minutesSpent),
       status,
-      year_finished:
-        status === 'Completed' && !book.year_finished
+      yearFinished:
+        status === 'Completed' && !book.yearFinished
           ? new Date().getFullYear()
           : undefined,
     });
@@ -382,7 +384,7 @@ const EditBookForm = ({
                       textAlign: 'right',
                     }}
                   >
-                    {description.length}/{200} characters
+                    {description?.length ?? 0}/{200} characters
                   </p>
                 </InfoCard>
               </MotionDivZOpacity>

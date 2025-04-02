@@ -5,7 +5,7 @@ import {
   getPagesReadToday,
   getReadingTimeToday,
 } from '../utils/dailyReadingTracket.tsx';
-import { Book } from '../temp_data.ts';
+import { Book } from '../book.type.ts';
 
 const ReadingStats = ({ books }: { books: Book[] }) => {
   return (
@@ -83,7 +83,7 @@ const ReadingStats = ({ books }: { books: Book[] }) => {
             <h1 style={{ color: 'white' }}>
               You read{' '}
               <span style={{ color: 'rgb(57, 125, 236)' }}>
-                {books.reduce((acc, book) => acc + book.pagesRead, 0)} pages
+                {books.reduce((acc, book) => acc + book.pagesRead!, 0)} pages
               </span>
               .
             </h1>
@@ -94,7 +94,7 @@ const ReadingStats = ({ books }: { books: Book[] }) => {
             <h1 style={{ color: 'white' }}>
               You read for{' '}
               <span style={{ color: 'rgb(95, 92, 222)' }}>
-                {books.reduce((acc, book) => acc + book.minutesSpent, 0)}m
+                {books.reduce((acc, book) => acc + book.minutesSpent!, 0)}m
               </span>
               .
             </h1>
@@ -109,7 +109,7 @@ const ReadingStats = ({ books }: { books: Book[] }) => {
                   {' '}
                   {
                     books.filter(
-                      (book) => book.year_finished === new Date().getFullYear()
+                      (book) => book.yearFinished === new Date().getFullYear()
                     ).length
                   }{' '}
                   books
@@ -130,7 +130,7 @@ const ReadingStats = ({ books }: { books: Book[] }) => {
                 <CircularProgressbar
                   value={
                     books.filter(
-                      (book) => book.year_finished === new Date().getFullYear()
+                      (book) => book.yearFinished === new Date().getFullYear()
                     ).length
                   }
                   maxValue={5}

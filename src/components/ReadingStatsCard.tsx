@@ -1,5 +1,5 @@
 import GalleryCard from './GalleryCard.tsx';
-import { Book } from '../temp_data.ts';
+import { Book } from '../book.type.ts';
 
 interface ReadingStatsCardProps {
   onSelect: (book: Book | null) => void;

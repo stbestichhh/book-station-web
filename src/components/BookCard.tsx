@@ -1,7 +1,7 @@
 import GalleryCard from './GalleryCard.tsx';
 import { getFullBookId } from '../utils';
 import { useEffect } from 'react';
-import { BookStatus } from '../temp_data.ts';
+import { BookStatus } from '../book.type.ts';
 
 interface BookCardProps {
   bookId: number;

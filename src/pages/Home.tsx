@@ -1,19 +1,38 @@
-import { useEffect, useRef, useState } from 'react';
-import { Book, books as booksArray } from '../temp_data.ts';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { Book } from '../book.type.ts';
 import BookGallery from '../components/BookGallery.tsx';
 import BookDetails from '../components/BookDetails.tsx';
 import ReadingStats from '../components/ReadingStats.tsx';
 import { getFullBookId } from '../utils';
 import AddBookForm from '../components/AddBookForm.tsx';
 import { motion } from 'framer-motion';
+import { bookHttp } from '../http';
 
 const Home = () => {
-  const [books, setBooks] = useState<Book[]>(booksArray);
+  const [books, setBooks] = useState<Book[]>([]);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [isAddingBook, setIsAddingBook] = useState<boolean>(false);
   const galleryRef = useRef<HTMLDivElement>(null);
 
+  const fetchBooks = useCallback(async () => {
+    console.log('fetchBooks()');
+    try {
+      const booksData = await bookHttp.fetchBooks();
+
+      setBooks((prevBooks) => {
+        if (JSON.stringify(prevBooks) !== JSON.stringify(booksData)) {
+          return booksData as Book[];
+        }
+        return prevBooks;
+      });
+    } catch (error) {
+      setBooks([]);
+      console.error(error);
+    }
+  }, []);
+
   useEffect(() => {
+    fetchBooks().then();
     if (selectedBook) {
       const bookIndex = books.findIndex((book) => book.id === selectedBook.id);
       const targetIndex = Math.max(1, bookIndex - 1);
@@ -25,7 +44,7 @@ const Home = () => {
         targetBook.scrollIntoView({ behavior: 'smooth', inline: 'center' });
       }
     }
-  }, [selectedBook, books]);
+  }, [selectedBook, fetchBooks]);
 
   const handleBackToStats = () => {
     setSelectedBook(null);
@@ -45,27 +64,21 @@ const Home = () => {
     }
   };
 
-  const handleAddBook = (newBook: Book) => {
-    setBooks([newBook, ...booksArray]);
+  const handleAddBook = async (newBook: Book) => {
+    await bookHttp.createBook(newBook).then(() => fetchBooks());
     setIsAddingBook(false);
   };
 
-  const handleDeleteBook = (book: Book) => {
-    books.splice(books.indexOf(book), 1);
-    setBooks([...books]);
+  const handleDeleteBook = async (book: Book) => {
+    await bookHttp.deleteBook(book.id).then(() => fetchBooks());
     handleBackToStats();
   };
 
-  const handleEditBook = (
+  const handleEditBook = async (
     book: Book,
     bookProps: Partial<Exclude<Book, 'id'>>
   ) => {
-    const newBook = {
-      ...book,
-      ...bookProps,
-    };
-    books.splice(books.indexOf(book), 1, newBook);
-    setBooks([...books]);
+    await bookHttp.editBook(book.id, bookProps).then(() => fetchBooks());
     handleBackToStats();
   };
 
