@@ -7,16 +7,17 @@ import {
 } from '../utils/dailyReadingTracket.tsx';
 import { Book } from '../book.type.ts';
 import { User } from '../user.type.ts';
+import '../styles/readingStats.css';
 
 const ReadingStats = ({ books, user }: { books: Book[]; user: User }) => {
   return (
     <>
       <MotionDivZOpacity>
         <h1
+          className={'reading-stats-label'}
           style={{
             color: 'white',
             marginBottom: '20px',
-            fontSize: '80px',
           }}
         >
           Welcome{user ? `, ${user.username}!` : ''}
@@ -40,7 +41,7 @@ const ReadingStats = ({ books, user }: { books: Book[]; user: User }) => {
               </h1>
               <div style={{ width: '30%', height: '30%', marginLeft: '10px' }}>
                 <CircularProgressbar
-                  value={getReadingTimeToday()}
+                  value={getReadingTimeToday(user?.id)}
                   maxValue={user?.dailyReadingGoal}
                   circleRatio={0.75}
                   strokeWidth={12}
@@ -60,12 +61,12 @@ const ReadingStats = ({ books, user }: { books: Book[]; user: User }) => {
             <h1 style={{ color: 'white' }}>
               Read today{' '}
               <span style={{ color: 'rgb(57, 125, 236)' }}>
-                {getPagesReadToday()} pages
+                {getPagesReadToday(user?.id)} pages
               </span>{' '}
               for{' '}
               <span style={{ color: 'orangered' }}>
                 {' '}
-                {getReadingTimeToday()}m
+                {getReadingTimeToday(user?.id)}m
               </span>
               .
             </h1>

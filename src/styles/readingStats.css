@@ -1,0 +1,6 @@
+.reading-stats-label {
+  font-size: 80px;
+  @media (max-width: 390px) {
+    font-size: 40px;
+  }
+}

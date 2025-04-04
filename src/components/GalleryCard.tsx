@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../styles/galleryCard.css';
 
 interface GalleryCardProps {
   title: string;
@@ -17,10 +18,8 @@ const GalleryCard = ({
 
   return (
     <div
-      className={`card m-2 d-inline-block`}
+      className={`card m-2 d-inline-block gallery-card ${isSelected ? 'selected' : ''}`}
       style={{
-        width: isSelected ? '300px' : '200px',
-        height: isSelected ? '300px' : '200px',
         cursor: 'pointer',
         flex: '0 0 auto',
         transition: 'all 0.3s ease',

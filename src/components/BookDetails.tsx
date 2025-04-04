@@ -476,7 +476,13 @@ const BookDetails = ({
                 >
                   About the book
                 </h1>
-                <p style={{ marginLeft: '2px', fontSize: '20px' }}>
+                <p
+                  style={{
+                    marginLeft: '2px',
+                    fontSize: '20px',
+                    marginRight: '700px',
+                  }}
+                >
                   {book.description}
                 </p>
               </div>

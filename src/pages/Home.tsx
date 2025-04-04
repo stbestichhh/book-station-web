@@ -64,7 +64,7 @@ const Home = () => {
         getFullBookId(books[targetIndex]?.id)
       );
 
-      if (targetBook && galleryRef.current) {
+      if (targetBook && galleryRef.current && window.innerWidth > 768) {
         targetBook.scrollIntoView({ behavior: 'smooth', inline: 'center' });
       }
     }

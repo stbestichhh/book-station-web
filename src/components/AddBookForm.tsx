@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Book } from '../book.type.ts';
 import MotionDivZOpacity from './MotionDivZOpacity.tsx';
 import InfoCard from './InfoCard.tsx';
+import '../styles/addBookForm.css';
 
 const AddBookForm = ({
   handleAddBook,
@@ -50,10 +51,10 @@ const AddBookForm = ({
     <>
       <MotionDivZOpacity>
         <h1
+          className={'add-book-label'}
           style={{
             color: 'white',
             marginBottom: '20px',
-            fontSize: '80px',
           }}
         >
           Add new book

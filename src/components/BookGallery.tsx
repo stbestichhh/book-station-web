@@ -6,6 +6,7 @@ import BookCard from './BookCard.tsx';
 import ArrowButton from './ArrowButton.tsx';
 import { useEffect, useState } from 'react';
 import SettingsButton from './SettingsButton.tsx';
+import '../styles/bookGallery.css';
 
 interface BookGalleryProps {
   books: Book[];
@@ -81,33 +82,10 @@ const BookGallery = ({
   );
 
   return (
-    <div className="position-relative w-100" style={{ minHeight: '405px' }}>
-      <div
-        className="d-flex w-100"
-        style={{
-          padding: '0px 15px 0px 30px',
-          marginTop: '20px',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          position: 'relative',
-        }}
-      >
-        <div
-          className={'d-flex position-relative'}
-          style={{
-            width: '100%',
-            alignItems: 'center',
-            justifyContent: 'start',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          <span
-            style={{
-              position: 'absolute',
-              pointerEvents: 'none',
-              paddingLeft: '10px',
-            }}
-          >
+    <div className="position-relative w-100 book-gallery-main">
+      <div className="d-flex w-100 book-gallery-container">
+        <div className={'d-flex position-relative search-bar-div'}>
+          <span>
             <img src="search.svg" style={{ width: '40px', height: '40px' }} />
           </span>
           <input
@@ -119,7 +97,6 @@ const BookGallery = ({
             className={'form-control w-50'}
             style={{
               borderRadius: '20px',
-              padding: '10px 15px 10px 50px',
               backgroundColor: 'rgba(39, 43, 51, 0.2)',
               color: 'white',
               borderColor: 'transparent',
@@ -133,9 +110,7 @@ const BookGallery = ({
             }
             className="form-control"
             style={{
-              width: `150px`,
               textAlign: 'center',
-              borderRadius: '20px',
               padding: '10px 15px 10px 15px',
               backgroundColor: 'rgba(39, 43, 51, 0.2)',
               color: 'white',
@@ -149,10 +124,9 @@ const BookGallery = ({
           </select>
           {searchIsFocused && searchResult.length > 0 && (
             <div
-              className={'position-absolute'}
+              className={'position-absolute search-result'}
               style={{
                 top: '120%',
-                width: '50%',
                 maxHeight: '200px',
                 overflowY: 'auto',
                 touchAction: 'pan-x',
@@ -216,14 +190,18 @@ const BookGallery = ({
           }}
         >
           <SettingsButton fetch={fetchUser} />
-          <ArrowButton
-            onClick={() => scrollGallery('left')}
-            arrowDirection="90"
-          />
-          <ArrowButton
-            onClick={() => scrollGallery('right')}
-            arrowDirection="-90"
-          />
+          {window.innerWidth > 768 && (
+            <>
+              <ArrowButton
+                onClick={() => scrollGallery('left')}
+                arrowDirection="90"
+              />
+              <ArrowButton
+                onClick={() => scrollGallery('right')}
+                arrowDirection="-90"
+              />
+            </>
+          )}
         </div>
       </div>
       <div
