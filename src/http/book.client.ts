@@ -3,7 +3,7 @@ import { Book } from '../book.type.ts';
 
 class BookClient extends AbstractApiClient<Book> {
   public fetchBooks(bookId?: number): Promise<Book | Book[]> {
-    return this.get(bookId ? `books/${bookId}` : '/books');
+    return this.get(bookId ? `/books/${bookId}` : '/books');
   }
 
   public createBook(data: Book) {
