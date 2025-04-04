@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import MotionDivZOpacity from './MotionDivZOpacity.tsx';
 import InfoCard from './InfoCard.tsx';
 import { addPagesReadToday } from '../utils/dailyReadingTracket.tsx';
+import { User } from '../user.type.ts';
 
 interface EditBookFormProps {
   book: Book;
@@ -11,6 +12,7 @@ interface EditBookFormProps {
   setAddPagesRead: (value: boolean) => void;
   addPagesRead: boolean;
   totalMinutesRead: number;
+  user: User;
 }
 
 const EditBookForm = ({
@@ -20,6 +22,7 @@ const EditBookForm = ({
   addPagesRead,
   setAddPagesRead,
   totalMinutesRead,
+  user,
 }: EditBookFormProps) => {
   const [title, setTitle] = useState(book.title);
   const [author, setAuthor] = useState(book.author);
@@ -92,7 +95,7 @@ const EditBookForm = ({
 
   const handleAddTodayStats = () => {
     const diff = Number(pagesRead) - bookPagesReadBeforeEdit;
-    addPagesReadToday(diff);
+    addPagesReadToday(diff, user.id);
     setBookPagesReadBeforeEdit(Number(pagesRead));
   };
 

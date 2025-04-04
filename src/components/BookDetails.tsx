@@ -4,12 +4,14 @@ import { useEffect, useRef, useState } from 'react';
 import { useStopwatch } from '../hooks/useTimer.tsx';
 import EditBookForm from './EditBookForm.tsx';
 import { addReadingMinutesToday } from '../utils/dailyReadingTracket.tsx';
+import { User } from '../user.type.ts';
 
 interface BookDetailsProps {
   book: Book;
   onBack: () => void;
   handleDeleteBook: (book: Book) => void;
   handleEditBook: (book: Book, bookProps: Partial<Exclude<Book, 'id'>>) => void;
+  user: User;
 }
 
 interface ButtonState {
@@ -22,6 +24,7 @@ const BookDetails = ({
   onBack,
   handleDeleteBook,
   handleEditBook,
+  user,
 }: BookDetailsProps) => {
   const [actionButtonPressed, setActionButtonPressed] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
@@ -58,7 +61,7 @@ const BookDetails = ({
     if (mark) {
       const totalMinutes = minutes + hours * 60;
       setTotalMinutesSpent((prev) => prev + totalMinutes);
-      addReadingMinutesToday(totalMinutes);
+      addReadingMinutesToday(totalMinutes, user.id);
       reset();
       setAddPagesRead(true);
       setIsEditingBook(true);
@@ -449,6 +452,7 @@ const BookDetails = ({
             addPagesRead={addPagesRead}
             setAddPagesRead={setAddPagesRead}
             totalMinutesRead={totalMinutesSpent}
+            user={user!}
           />
         ) : (
           <>

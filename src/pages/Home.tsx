@@ -154,6 +154,7 @@ const Home = () => {
               onBack={handleBackToStats}
               handleDeleteBook={handleDeleteBook}
               handleEditBook={handleEditBook}
+              user={currentUser!}
             />
           ) : (
             <ReadingStats books={books} user={currentUser!} />
