@@ -1,13 +1,26 @@
+import axios from 'axios';
+
 const STORAGE_KEY_TIME = 'readingTimeToday';
 const STORAGE_KEY_PAGES = 'pagesReadToday';
+
+const getCurrentUserId = async () => {
+  const response = await axios
+    .get(`${import.meta.env.VITE_SERVER_BASE_URL}/user/me`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .then();
+  return response.data.id;
+};
 
 export const getTodayDateString = () => new Date().toISOString().split('T')[0];
 
 export const getReadingTimeToday = () => {
   const stored = localStorage.getItem(STORAGE_KEY_TIME);
   if (stored) {
-    const { date, minutes } = JSON.parse(stored);
-    if (date === getTodayDateString()) {
+    const { userId, date, minutes } = JSON.parse(stored);
+    if (date === getTodayDateString() && userId === getCurrentUserId()) {
       return minutes;
     }
   }
@@ -21,15 +34,19 @@ export const addReadingMinutesToday = (minutesToAdd: number) => {
 
   localStorage.setItem(
     STORAGE_KEY_TIME,
-    JSON.stringify({ date: today, minutes: newMinutes })
+    JSON.stringify({
+      userId: getCurrentUserId(),
+      date: today,
+      minutes: newMinutes,
+    })
   );
 };
 
 export const getPagesReadToday = () => {
   const stored = localStorage.getItem(STORAGE_KEY_PAGES);
   if (stored) {
-    const { date, pages } = JSON.parse(stored);
-    if (date === getTodayDateString()) {
+    const { userId, date, pages } = JSON.parse(stored);
+    if (date === getTodayDateString() && userId === getCurrentUserId()) {
       return pages;
     }
   }
@@ -43,6 +60,10 @@ export const addPagesReadToday = (pagesToAdd: number) => {
 
   localStorage.setItem(
     STORAGE_KEY_PAGES,
-    JSON.stringify({ date: today, pages: newPagesReadAmount })
+    JSON.stringify({
+      userId: getCurrentUserId(),
+      date: today,
+      pages: newPagesReadAmount,
+    })
   );
 };

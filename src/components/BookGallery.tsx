@@ -5,6 +5,7 @@ import ReadingStatsCard from './ReadingStatsCard.tsx';
 import BookCard from './BookCard.tsx';
 import ArrowButton from './ArrowButton.tsx';
 import { useEffect, useState } from 'react';
+import SettingsButton from './SettingsButton.tsx';
 
 interface BookGalleryProps {
   books: Book[];
@@ -14,6 +15,7 @@ interface BookGalleryProps {
   setIsAddingBook: (state: boolean) => void;
   isAddingBook: boolean;
   scrollGallery: (direction: 'left' | 'right') => void;
+  fetchUser: () => unknown;
 }
 
 const BookGallery = ({
@@ -24,6 +26,7 @@ const BookGallery = ({
   setIsAddingBook,
   isAddingBook,
   scrollGallery,
+  fetchUser,
 }: BookGalleryProps) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchResult, setSearchResult] = useState<Book[]>([]);
@@ -212,6 +215,7 @@ const BookGallery = ({
             whiteSpace: 'nowrap',
           }}
         >
+          <SettingsButton fetch={fetchUser} />
           <ArrowButton
             onClick={() => scrollGallery('left')}
             arrowDirection="90"

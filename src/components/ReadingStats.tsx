@@ -6,8 +6,9 @@ import {
   getReadingTimeToday,
 } from '../utils/dailyReadingTracket.tsx';
 import { Book } from '../book.type.ts';
+import { User } from '../user.type.ts';
 
-const ReadingStats = ({ books }: { books: Book[] }) => {
+const ReadingStats = ({ books, user }: { books: Book[]; user: User }) => {
   return (
     <>
       <MotionDivZOpacity>
@@ -18,7 +19,7 @@ const ReadingStats = ({ books }: { books: Book[] }) => {
             fontSize: '80px',
           }}
         >
-          Welcome
+          Welcome{user ? `, ${user.username}!` : ''}
         </h1>
       </MotionDivZOpacity>
       <div
@@ -31,12 +32,16 @@ const ReadingStats = ({ books }: { books: Book[] }) => {
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <h1 style={{ color: 'white' }}>
                 Daily reading goal
-                <span style={{ color: 'orangered' }}> 15m</span>.
+                <span style={{ color: 'orangered' }}>
+                  {' '}
+                  {user?.dailyReadingGoal}
+                </span>
+                .
               </h1>
               <div style={{ width: '30%', height: '30%', marginLeft: '10px' }}>
                 <CircularProgressbar
                   value={getReadingTimeToday()}
-                  maxValue={15}
+                  maxValue={user?.dailyReadingGoal}
                   circleRatio={0.75}
                   strokeWidth={12}
                   styles={buildStyles({
@@ -124,7 +129,11 @@ const ReadingStats = ({ books }: { books: Book[] }) => {
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <h1 style={{ color: 'white' }}>
                 Yearly reading goal
-                <span style={{ color: 'orange' }}> 5 books</span>.
+                <span style={{ color: 'orange' }}>
+                  {' '}
+                  {user?.yearlyReadingGoal} books
+                </span>
+                .
               </h1>
               <div style={{ width: '25%', height: '25%', marginLeft: '20px' }}>
                 <CircularProgressbar
@@ -133,7 +142,7 @@ const ReadingStats = ({ books }: { books: Book[] }) => {
                       (book) => book.yearFinished === new Date().getFullYear()
                     ).length
                   }
-                  maxValue={5}
+                  maxValue={user?.yearlyReadingGoal}
                   circleRatio={0.75}
                   strokeWidth={12}
                   styles={buildStyles({

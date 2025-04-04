@@ -7,12 +7,35 @@ import { getFullBookId } from '../utils';
 import AddBookForm from '../components/AddBookForm.tsx';
 import { motion } from 'framer-motion';
 import { bookHttp } from '../http';
+import axios from 'axios';
+import { User } from '../user.type.ts';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [books, setBooks] = useState<Book[]>([]);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [isAddingBook, setIsAddingBook] = useState<boolean>(false);
   const galleryRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+
+  const getCurrentUser = async () => {
+    try {
+      const user = await axios.get(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/user/me`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+      setCurrentUser(user.data as User);
+      return user;
+    } catch (e) {
+      console.log(e);
+      navigate('/auth');
+    }
+  };
 
   const fetchBooks = useCallback(async () => {
     console.log('fetchBooks()');
@@ -33,6 +56,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchBooks().then();
+    getCurrentUser().then();
     if (selectedBook) {
       const bookIndex = books.findIndex((book) => book.id === selectedBook.id);
       const targetIndex = Math.max(1, bookIndex - 1);
@@ -112,6 +136,7 @@ const Home = () => {
           setIsAddingBook={setIsAddingBook}
           isAddingBook={isAddingBook}
           scrollGallery={scrollGallery}
+          fetchUser={getCurrentUser}
         />
       </motion.div>
 
@@ -131,7 +156,7 @@ const Home = () => {
               handleEditBook={handleEditBook}
             />
           ) : (
-            <ReadingStats books={books} />
+            <ReadingStats books={books} user={currentUser!} />
           )}
         </div>
       </div>
