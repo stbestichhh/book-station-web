@@ -1,5 +1,5 @@
 import GalleryCard from './GalleryCard.tsx';
-import { Book } from '../temd_data.ts';
+import { Book } from '../book.type.ts';
 
 interface ReadingStatsCardProps {
   onSelect: (book: Book | null) => void;
@@ -24,6 +24,7 @@ const ReadingStatsCard = ({
       title={`Reading stats`}
       onSelect={onReadingStatsSelect}
       isSelected={selectedBook === null && !isAddingBook}
+      image="main_card.svg"
     />
   );
 };

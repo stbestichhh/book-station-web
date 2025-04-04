@@ -1,5 +1,5 @@
 import GalleryCard from './GalleryCard.tsx';
-import { Book } from '../temd_data.ts';
+import { Book } from '../book.type.ts';
 
 interface AddingBookCardProps {
   onSelect: () => void;
@@ -17,6 +17,7 @@ const AddBookCard = ({
       title={`Add new book`}
       onSelect={onSelect}
       isSelected={selectedBook === null && isAddingBook}
+      image="plus.svg"
     />
   );
 };

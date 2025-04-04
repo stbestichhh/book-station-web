@@ -1,0 +1,58 @@
+.book-gallery-main {
+  min-height: 405px;
+  @media (max-width: 390px) {
+    max-height: 0;
+  }
+}
+
+.book-gallery-container {
+  padding: 0 15px 0 30px;
+  margin-top: 20px;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.search-bar-div {
+  width: 100%;
+  align-items: center;
+  justify-content: start;
+  white-space: nowrap;
+}
+
+.search-bar-div span {
+  position: absolute;
+  pointer-events: none;
+  padding-left: 10px;
+
+  @media (max-width: 390px) {
+    padding-left: 0;
+  }
+}
+
+.search-bar-div select {
+  width: 150px;
+  @media (max-width: 390px) {
+    width: 125px;
+    margin-right: 10px;
+  }
+
+  border-radius: 20px;
+  @media (max-width: 390px) {
+    border-radius: 15px;
+  }
+}
+
+.search-bar-div input {
+  padding: 10px 15px 10px 50px;
+  @media (max-width: 390px) {
+    padding-right: 95px;
+  }
+}
+
+.search-result {
+  width: 50%;
+  @media (max-width: 390px) {
+    width: 100%;
+  }
+}
